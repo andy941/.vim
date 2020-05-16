@@ -17,6 +17,7 @@ set expandtab
 
 " display line numbers on the left side of the editor.
 set nu
+set relativenumber
 
 " do not wrap phrases when they reach the screen limit.
 set nowrap
