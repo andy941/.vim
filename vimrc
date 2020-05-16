@@ -34,21 +34,20 @@ set updatetime=50
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-"display coordinates in bottom right corner
+" display coordinates in bottom right corner
 set ruler
 
-"activate search highlight and incrementally search words while typing
+" activate search highlight and incrementally search words while typing
 set incsearch
 set hlsearch
 
-"fold indented code, vim will try to indent code nicely
+" fold indented code, vim will try to indent code nicely
 set nofoldenable
 set foldmethod=indent
 set smartindent
 
-"vim plug in manager
-"automate installation
 
+" vim plug in manager automate installation
 if empty(glob('~/.vim/autoload/plug.vim'))
 
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -59,19 +58,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 
 endif
 
-"begin to plug-in stuff
-
+" begin to plug-in stuff
 call plug#begin('~/.vim/plugged')
 
 Plug 'jcherven/jummidark.vim'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-utils/vim-man'
 
-
 call plug#end() 
 
-"use a colorscheme
 
+" use a colorscheme
 colorscheme jummidark
 set background=dark
 
