@@ -47,6 +47,10 @@ set nofoldenable
 set foldmethod=indent
 set smartindent
 
+" show dropdown menu when autocompleting in the :command line
+set wildmenu
+set wildmode=longest,list
+
 
 " vim plug in manager automate installation
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -72,4 +76,11 @@ call plug#end()
 " use a colorscheme
 colorscheme jummidark
 set background=dark
+
+
+" USEFUL REMAPS
+"
+" autocomplete path insert mode (with TAB)
+inoremap <Tab> <C-X><C-F>
+
 
