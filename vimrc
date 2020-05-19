@@ -69,6 +69,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'jcherven/jummidark.vim'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-utils/vim-man'
+Plug 'preservim/nerdtree'
 
 call plug#end() 
 
@@ -76,6 +77,13 @@ call plug#end()
 " use a colorscheme
 colorscheme jummidark
 set background=dark
+
+" open NerdTree automatically when Vim starts without opening a file
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" close NerdTree if it's the only open tab
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
 " USEFUL REMAPS
