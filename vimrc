@@ -70,6 +70,7 @@ Plug 'jcherven/jummidark.vim'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-utils/vim-man'
 Plug 'preservim/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end() 
 
@@ -79,11 +80,29 @@ colorscheme jummidark
 set background=dark
 
 " open NerdTree automatically when Vim starts without opening a file
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" open NerdTree automatically when Vim starts 
+autocmd vimenter * NERDTree
+
+" key binding to quickly search the tree
+map <C-n> :NERDTreeToggle<CR>
 
 " close NerdTree if it's the only open tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" make it prettier 
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+" If more than one window and previous buffer was NERDTree, go back to it.
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
+" always put the cursr on the file, not on NerdTree. 
+autocmd VimEnter * NERDTree | wincmd p
+
+" If you are using vim-plug, you'll also need to add these lines to avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window:
+let g:plug_window = 'noautocmd vertical topleft new'
 
 
 " USEFUL REMAPS
