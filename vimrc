@@ -3,8 +3,10 @@ syntax on
 
 " hides the files that has unsaved changes intead of forcing the user
 " to save them immediately. the unsaved changes can still be accessed from the 
-" buffer.
+" buffer. To add a safety net, the buffers will be saved eveytime they are
+" hidden.
 set hidden
+set autowriteall
 
 " deactivateannoying error sounds.
 set noerrorbells
@@ -48,9 +50,7 @@ set foldmethod=indent
 set smartindent
 
 " show dropdown menu when autocompleting in the :command line
-set wildmenu
-set wildmode=longest,list
-
+set wildchar=<Tab> wildmenu wildmode=full
 
 " vim plug in manager automate installation
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -83,7 +83,7 @@ set background=dark
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " open NerdTree automatically when Vim starts 
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 
 " key binding to quickly search the tree
 map <C-n> :NERDTreeToggle<CR>
@@ -98,8 +98,11 @@ let NERDTreeDirArrows = 1
 " If more than one window and previous buffer was NERDTree, go back to it.
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
-" always put the cursr on the file, not on NerdTree. 
-autocmd VimEnter * NERDTree | wincmd p
+" always put the cursr on the file, not on NerdTree. CAREFUL, if you open a
+" tree everytime you open a file/directory, with obvious problems.
+" I prefer to open the tree if a open a directory and not open it immediately
+" when I open a file for editing. 
+"autocmd VimEnter * NERDTree | wincmd p
 
 " If you are using vim-plug, you'll also need to add these lines to avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window:
 let g:plug_window = 'noautocmd vertical topleft new'
