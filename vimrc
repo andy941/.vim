@@ -1,6 +1,12 @@
 
 syntax on
 
+" change cursor shape in insert/normal mode
+let &t_SI = "\<Esc>[6 q" " INSERT - solid line
+let &t_SR = "\<Esc>[4 q" " REPLACE - solid underscore
+let &t_EI = "\<Esc>[2 q" " NORMAL(else) - solid square
+
+
 " hides the files that has unsaved changes intead of forcing the user
 " to save them immediately. the unsaved changes can still be accessed from the 
 " buffer. To add a safety net, the buffers will be saved eveytime they are
