@@ -73,16 +73,19 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'jcherven/jummidark.vim'
+Plug 'morhetz/gruvbox'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-utils/vim-man'
 Plug 'preservim/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'jupyter-vim/jupyter-vim'
 
 call plug#end() 
 
 
 " use a colorscheme
-colorscheme jummidark
+let g:gruvbox_contrast_dark='hard'
+
+colorscheme gruvbox
 set background=dark
 
 " open NerdTree automatically when Vim starts without opening a file
@@ -119,4 +122,10 @@ let g:plug_window = 'noautocmd vertical topleft new'
 " autocomplete path insert mode (with TAB)
 inoremap <Tab> <C-X><C-F>
 
-
+" remaps for jupyter-vim
+let g:jupyter_mapkeys = 0
+" Run current file
+nnoremap <buffer> <silent> <localleader>E :JupyterRunFile<CR>
+" Send a selection of lines
+nmap     <buffer> <silent> <localleader>e <Plug>JupyterRunTextObj
+vmap     <buffer> <silent> <localleader>e <Plug>JupyterRunVisual
