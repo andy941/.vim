@@ -1,4 +1,3 @@
-
 syntax on
 
 " change cursor shape in insert/normal mode
@@ -21,7 +20,9 @@ set noerrorbells
 " indenting to insert mode.
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
+set autoindent
+
 
 " display line numbers on the left side of the editor.
 set nu
@@ -50,10 +51,12 @@ set ruler
 set incsearch
 set hlsearch
 
-" fold indented code, vim will try to indent code nicely
+" get rid of the highlighting by pressing cher return
+nnoremap <cr> :noh<cr>
+
+" fold indented code
 set nofoldenable
 set foldmethod=indent
-set smartindent
 
 " show dropdown menu when autocompleting in the :command line
 set wildchar=<Tab> wildmenu wildmode=full
@@ -72,12 +75,14 @@ endif
 " begin to plug-in stuff
 call plug#begin('~/.vim/plugged')
 
-Plug 'jcherven/jummidark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-utils/vim-man'
 Plug 'preservim/nerdtree'
 Plug 'jupyter-vim/jupyter-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
 
 call plug#end() 
 
@@ -87,6 +92,11 @@ let g:gruvbox_contrast_dark='hard'
 
 colorscheme gruvbox
 set background=dark
+" set termguicolors
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
 
 " open NerdTree automatically when Vim starts without opening a file
 " autocmd StdinReadPre * let s:std_in=1
@@ -116,6 +126,10 @@ autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | en
 " If you are using vim-plug, you'll also need to add these lines to avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window:
 let g:plug_window = 'noautocmd vertical topleft new'
 
+" Small tweaks to help YCM to look and feel better
+" don't open preview window when showing info, open another popup
+set completeopt=menuone,longest,popup
+
 
 " USEFUL REMAPS
 "
@@ -125,7 +139,7 @@ inoremap <Tab> <C-X><C-F>
 " remaps for jupyter-vim
 let g:jupyter_mapkeys = 0
 " Run current file
-nnoremap <buffer> <silent> <localleader>E :JupyterRunFile<CR>
+nnoremap <buffer> <silent> <Tab>r :JupyterRunFile<CR>
 " Send a selection of lines
-nmap     <buffer> <silent> <localleader>e <Plug>JupyterRunTextObj
-vmap     <buffer> <silent> <localleader>e <Plug>JupyterRunVisual
+nmap     <buffer> <silent> <Tab>e <Plug>JupyterRunTextObj
+vmap     <buffer> <silent> <Tab>e <Plug>JupyterRunVisual
