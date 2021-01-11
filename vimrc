@@ -83,6 +83,7 @@ Plug 'jupyter-vim/jupyter-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
+Plug 'gko/vim-coloresque'
 
 call plug#end() 
 
