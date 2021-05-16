@@ -58,10 +58,14 @@ nnoremap <cr> :noh<cr>
 set nofoldenable
 set foldmethod=indent
 
+
 " show dropdown menu when autocompleting in the :command line
 set wildchar=<Tab> wildmenu wildmode=full
 
+"-----------------------------------------------------------------------
+" VIMPLUG
 " vim plug in manager automate installation
+
 if empty(glob('~/.vim/autoload/plug.vim'))
 
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -78,7 +82,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-utils/vim-man'
-" Plug 'preservim/nerdtree'
 Plug 'jupyter-vim/jupyter-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -88,12 +91,20 @@ Plug 'gko/vim-coloresque'
 call plug#end() 
 
 
+"-----------------------------------------------------------------------
+" GRUVBOX
+
 " use a colorscheme
 let g:gruvbox_contrast_dark='hard'
 
 colorscheme gruvbox
 set background=dark
 " set termguicolors
+
+
+
+"-----------------------------------------------------------------------
+" AIRLINE
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -105,7 +116,6 @@ let g:airline_powerline_fonts = 1
  if !exists('g:airline_symbols')
      let g:airline_symbols = {}
      endif
-
 
 " unicode symbols
 let g:airline_left_sep = '»'
@@ -131,39 +141,28 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" open NerdTree automatically when Vim starts without opening a file
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" open NerdTree automatically when Vim starts 
-" autocmd vimenter * NERDTree
 
-" key binding to quickly search the tree
-" map <C-n> :NERDTreeToggle<CR>
-" 
-" " close NerdTree if it's the only open tab
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" 
-" " make it prettier 
-" let NERDTreeMinimalUI = 1
-" let NERDTreeDirArrows = 1
-" 
-" " If more than one window and previous buffer was NERDTree, go back to it.
-" autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
-
-" always put the cursr on the file, not on NerdTree. CAREFUL, if you open a
-" tree everytime you open a file/directory, with obvious problems.
-" I prefer to open the tree if a open a directory and not open it immediately
-" when I open a file for editing. 
-"autocmd VimEnter * NERDTree | wincmd p
-
-" If you are using vim-plug, you'll also need to add these lines to avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window:
-" let g:plug_window = 'noautocmd vertical topleft new'
-
+"-----------------------------------------------------------------------
+" YouCompletMe
 " Small tweaks to help YCM to look and feel better
+
 " don't open preview window when showing info, open another popup
 set completeopt=menuone,longest,popup
 
+" Both of the following are equivalent, nice syntax highlighting for C and C++
+" pop up windows.
+autocmd FileType c,cpp let b:ycm_hover = { 'command': 'GetDoc', 'syntax': &syntax }
+"augroup MyYCMCustom
+"	autocmd!
+"	autocmd FileType c,cpp,py let b:ycm_hover = {
+"				\ 'command': 'GetDoc',
+"				\ 'syntax': &filetype
+"				\ }
+"augroup END
 
+
+
+"-----------------------------------------------------------------------
 " USEFUL REMAPS
 "
 " autocomplete path insert mode (with TAB)
