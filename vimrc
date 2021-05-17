@@ -151,7 +151,7 @@ set completeopt=menuone,longest,popup
 
 " Both of the following are equivalent, nice syntax highlighting for C and C++
 " pop up windows.
-autocmd FileType c,cpp let b:ycm_hover = { 'command': 'GetDoc', 'syntax': &syntax }
+autocmd FileType c,cpp,python let b:ycm_hover = { 'command': 'GetDoc', 'syntax': &syntax }
 "augroup MyYCMCustom
 "	autocmd!
 "	autocmd FileType c,cpp,py let b:ycm_hover = {
