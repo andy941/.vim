@@ -86,10 +86,9 @@ Plug 'jupyter-vim/jupyter-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
-Plug 'gko/vim-coloresque'
+Plug 'gorodinskiy/vim-coloresque'
 
 call plug#end() 
-
 
 "-----------------------------------------------------------------------
 " GRUVBOX
@@ -160,6 +159,7 @@ autocmd FileType c,cpp,python let b:ycm_hover = { 'command': 'GetDoc', 'syntax':
 "				\ }
 "augroup END
 
+nnoremap  <c-]> :YcmCompleter GoTo<CR>
 
 
 "-----------------------------------------------------------------------
