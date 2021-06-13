@@ -5,6 +5,8 @@ let &t_SI = "\<Esc>[6 q" " INSERT - solid line
 let &t_SR = "\<Esc>[4 q" " REPLACE - solid underscore
 let &t_EI = "\<Esc>[2 q" " NORMAL(else) - solid square
 
+" Paste indented properly
+set paste
 
 " hides the files that has unsaved changes intead of forcing the user
 " to save them immediately. the unsaved changes can still be accessed from the 
@@ -13,7 +15,7 @@ let &t_EI = "\<Esc>[2 q" " NORMAL(else) - solid square
 set hidden
 set autowriteall
 
-" deactivateannoying error sounds.
+" deactivate annoying error sounds.
 set noerrorbells
 
 " set tabs to be 4 spaces. expand tab will extend the beahviour and correct
@@ -22,7 +24,6 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set noexpandtab
 set autoindent
-
 
 " display line numbers on the left side of the editor.
 set nu
@@ -58,9 +59,9 @@ nnoremap <cr> :noh<cr>
 set nofoldenable
 set foldmethod=indent
 
-
 " show dropdown menu when autocompleting in the :command line
 set wildchar=<Tab> wildmenu wildmode=full
+
 
 "-----------------------------------------------------------------------
 " VIMPLUG
@@ -90,8 +91,9 @@ Plug 'gorodinskiy/vim-coloresque'
 
 call plug#end() 
 
+
 "-----------------------------------------------------------------------
-" GRUVBOX
+" COLORSCHEME
 
 " use a colorscheme
 let g:gruvbox_contrast_dark='hard'
@@ -99,7 +101,6 @@ let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 set background=dark
 " set termguicolors
-
 
 
 "-----------------------------------------------------------------------
@@ -143,7 +144,7 @@ let g:airline_symbols.linenr = ''
 
 "-----------------------------------------------------------------------
 " YouCompletMe
-" Small tweaks to help YCM to look and feel better
+" Small tweaks to help YCM look and feel better
 
 " don't open preview window when showing info, open another popup
 set completeopt=menuone,longest,popup
@@ -170,8 +171,10 @@ inoremap <Tab> <C-X><C-F>
 
 " remaps for jupyter-vim
 let g:jupyter_mapkeys = 0
+
 " Run current file
 nnoremap <buffer> <silent> <Tab>r :JupyterRunFile<CR>
+
 " Send a selection of lines
 nmap     <buffer> <silent> <Tab>e <Plug>JupyterRunTextObj
 vmap     <buffer> <silent> <Tab>e <Plug>JupyterRunVisual
