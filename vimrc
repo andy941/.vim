@@ -54,7 +54,7 @@ nnoremap <cr> :noh<cr>
 
 " fold indented code
 set nofoldenable
-set foldmethod=indent
+set foldmethod=syntax
 
 " show dropdown menu when autocompleting in the :command line
 set wildchar=<Tab> wildmenu wildmode=full
