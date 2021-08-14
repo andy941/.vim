@@ -1,4 +1,9 @@
 syntax on
+set encoding=utf-8
+
+" open splits on the right and below
+set splitright
+set splitbelow
 
 " change cursor shape in insert/normal mode
 let &t_SI = "\<Esc>[6 q" " INSERT - solid line
@@ -11,6 +16,8 @@ let &t_EI = "\<Esc>[2 q" " NORMAL(else) - solid square
 " hidden.
 set hidden
 set autowriteall
+" Also no swap files please
+set noswapfile
 
 " deactivate annoying error sounds.
 set noerrorbells
@@ -29,8 +36,9 @@ set relativenumber
 " do not wrap phrases when they reach the screen limit.
 set nowrap
 
-" case sensitive search only when one of the letters is uppercase.
-set smartcase
+" " case sensitive search only when one of the letters is uppercase.
+" set ignorecase
+" set smartcase
 
 " Give more space for displaying messages.
 "set cmdheight=2
@@ -59,6 +67,16 @@ set foldmethod=syntax
 " show dropdown menu when autocompleting in the :command line
 set wildchar=<Tab> wildmenu wildmode=full
 
+" useful settings for the :find command
+set path+=**
+set wildignorecase
+set wildignore=*.o
+
+" Add useful match pairs to '%'
+set mps+=<:>
+
+" scroll until at MAX n lines from the edges
+set scrolloff=8
 
 "-----------------------------------------------------------------------
 " VIMPLUG
@@ -91,19 +109,21 @@ call plug#end()
 
 "-----------------------------------------------------------------------
 " COLORSCHEME
+" Enable truecolor
+if exists('+termguicolors')
+	let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+	set termguicolors
+endif
 
-" use a colorscheme
 let g:gruvbox_contrast_dark='hard'
-
 colorscheme gruvbox
 set background=dark
-" set termguicolors
-
 
 "-----------------------------------------------------------------------
 " AIRLINE
-let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#formatter = 'unique_tail' 
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
 
@@ -175,3 +195,6 @@ nnoremap <buffer> <silent> <Tab>r :JupyterRunFile<CR>
 " Send a selection of lines
 nmap     <buffer> <silent> <Tab>e <Plug>JupyterRunTextObj
 vmap     <buffer> <silent> <Tab>e <Plug>JupyterRunVisual
+
+" Compile and run with g++
+nnoremap <C-c> :!clear; g++ -o  %:r.o % && ./%:r.o<Enter>
