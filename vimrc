@@ -19,7 +19,6 @@ set cursorline
 " hidden.
 set hidden
 set autowriteall
-
 " Also no swap files please
 set noswapfile
 
@@ -63,6 +62,7 @@ set hlsearch
 
 " get rid of the highlighting by pressing cher return
 nnoremap <cr> :noh<cr>
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>      " quickfix list FIX
 
 " fold indented code
 set nofoldenable
